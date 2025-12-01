@@ -3,6 +3,7 @@
  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' https: 'unsafe-inline'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:;">
   <title>Jeopardy Game - LIVE Function Testing</title>
   <script src="/_sdk/data_sdk.js"></script>
   <style>
@@ -360,10 +361,15 @@
    </div><!-- Setup & Initialization -->
    <div class="test-section">
     <h2>1️⃣ Setup &amp; Initialization</h2>
-     <div class="input-group">
-       <label><input type="checkbox" id="allow-writes"> Allow Live Writes (required for updates)</label>
-       <div style="font-size:0.9em; color:#ffd700; margin-top:6px;">Keep this unchecked to prevent accidental changes to the real game database.</div>
-     </div>
+    <div class="input-group">
+      <label><input type="checkbox" id="allow-writes"> Allow Live Writes (required for updates)</label>
+      <div style="font-size:0.9em; color:#ffd700; margin-top:6px;">Keep this unchecked to prevent accidental changes to the real game database.</div>
+    </div>
+    <div class="input-group">
+      <label><input type="checkbox" id="mock-simulate-errors"> Simulate SDK Errors (mock only)</label>
+      <label style="margin-top:8px;">Simulate Latency (ms): <input type="number" id="mock-latency" min="0" max="5000" value="0" style="width:80px;"></label>
+      <div style="font-size:0.9em; color:#ffa500; margin-top:6px;">Use these to test error handling and performance.</div>
+    </div>
      <div class="test-grid"><button class="test-btn" onclick="testSDKInit()" id="btn-sdk-init"> <span class="status-indicator">⏳</span> 🔌 Initialize SDK </button> <button class="test-btn" onclick="testCreateGame()" id="btn-create-game"> <span class="status-indicator">⏳</span> 🎮 Create New Game </button> <button class="test-btn" onclick="testLoadGame()" id="btn-load-game"> <span class="status-indicator">⏳</span> 📥 Load Game State </button> <button class="test-btn warning" onclick="testResetGame()" id="btn-reset-game"> <span class="status-indicator">⚠️</span> 🔄 Reset Game (DELETE) </button>
      </div>
    </div><!-- Team Management -->
